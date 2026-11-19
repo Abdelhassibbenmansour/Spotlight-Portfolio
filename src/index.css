@@ -6,10 +6,12 @@
     --font-inter : "Inter", sans-serif;
     --color-bg: #000319;
     --color-normal: #C1C2D3;
+    --color-label: #E4ECFF;
+    --color-purple: #CBACF9;
 }
 
 @layer utilities {
     .span-text {
-        color: #CBACF9;
+        color: var(--color-purple);
     }
 }
