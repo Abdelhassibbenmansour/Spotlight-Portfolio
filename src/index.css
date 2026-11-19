@@ -5,12 +5,10 @@
 @theme {
     --font-inter : "Inter", sans-serif;
     --color-bg: #000319;
+    --color-normal: #C1C2D3;
 }
 
 @layer utilities {
-    .normal-text {
-        color: #C1C2D3;
-    }
     .span-text {
         color: #CBACF9;
     }
