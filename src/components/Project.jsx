@@ -15,10 +15,10 @@ const ProjectCard = ({ image, title, description, technologies, link = "#" }) =>
         <div className="mt-auto flex items-center justify-between gap-3">
             <div className="flex items-center gap-1.5">
                 {technologies.map((tech) => (
-                    <div key={title} title={title}
+                    <div key={tech} title={title}
                         className="flex h-9 w-9 items-center justify-center rounded-full border border-[#363749]/60 bg-gradient-to-br from-[#04071d] to-[#0c0e23] sm:h-10 sm:w-10"
                     >
-                    <img src={tech} alt={title} className="h-5 w-5 object-contain sm:h-6 sm:w-6"/>
+                    <img src={tech} alt={tech} className="h-5 w-5 object-contain sm:h-6 sm:w-6"/>
                 </div>
                 ))}
             </div>
