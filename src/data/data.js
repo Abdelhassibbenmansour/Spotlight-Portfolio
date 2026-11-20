@@ -7,10 +7,15 @@ import Clerk from "../Img/Clerk.png";
 import Shogun from "../Img/Shogun.png";
 import Gsap from "../Img/Gsap.png";
 import NextJs from "../Img/NextJs.png";
-import Project01 from "../Img/Project01.png"
-import Project02 from "../Img/Project02.png"
-import Project03 from "../Img/Project03.png"
-import Project04 from "../Img/Project04.png"
+import Project01 from "../Img/Project01.png";
+import Project02 from "../Img/Project02.png";
+import Project03 from "../Img/Project03.png";
+import Project04 from "../Img/Project04.png";
+import Cloudinary from "../Img/Cloudinary.png";
+import Appwrite from "../Img/Appwrite.png";
+import Hostinger from "../Img/Hostinger.png";
+import Stream from "../Img/Stream.png";
+import Docker from "../Img/Docker.png";
 
 export const navItems = [
   { id: 1, label: "About",       sectionId: "about" },
@@ -54,4 +59,11 @@ export const projects = [
   },
 ];
 
-export default projects;
+export const companies = [
+  {id: 1,image: Cloudinary},
+  {id: 2,image: Appwrite},
+  {id: 3,image: Hostinger},
+  {id: 4,image: Stream},
+  {id: 5,image: Docker}
+];
+
