@@ -3,7 +3,7 @@ import GridCard06 from "../Img/GridCard06.png";
 const Presentation = () => {
   return (
     <section>
-      <div className="mx-auto flex max-w-[1240px] flex-col gap-4 md:gap-5 lg:gap-[30px] mt-14">
+      <div className="mx-auto flex max-w-[1240px] overflow-hidden flex-col gap-4 md:gap-5 lg:gap-[30px] mt-14">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-[689fr_521fr] md:gap-5 lg:gap-[30px]">
           <div className="relative bg-[url(./Img/GridCard01.png)] bg-no-repeat bg-cover bg-center flex min-h-[320px] items-end overflow-hidden rounded-[23px] border border-[#363749]/60 bg-gradient-to-br from-[#04071d] to-[#0c0e23] p-5 lg:p-7 md:min-h-0 md:aspect-[689/541]">
             <h2 className="text-[32px] leading-[1.2] font-bold lg:text-4xl">

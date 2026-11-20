@@ -20,6 +20,11 @@ import Experience01 from "../Img/Experience01.png";
 import Experience02 from "../Img/Experience02.png";
 import Experience03 from "../Img/Experience03.png";
 import Experience04 from "../Img/Experience04.png";
+import Instagram from "../Img/Instagram.png";
+import Twitter from "../Img/Twitter.png";
+import Github from "../Img/Github.png";
+import Whatsapp from "../Img/Whatsapp.png";
+import LinkedIn from "../Img/LinkedIn.png";
 
 
 export const navItems = [
@@ -97,5 +102,28 @@ export const experienceDetails = [
     role: "Lead Frontend Developer",
     details: "Developed and maintained user-facing features using modern frontend technologies.",
   }
+];
+
+export const footerLinks = [
+  {
+    id: "Instagram",
+    image: Instagram,
+  },
+  {
+    id: "Twitter",
+    image: Twitter,
+  },
+  {
+    id: "Github",
+    image: Github,
+  },
+  {
+    id: "Whatsapp",
+    image: Whatsapp,
+  },
+  {
+    id: "LinkedIn",
+    image: LinkedIn,
+  },
 ]
 

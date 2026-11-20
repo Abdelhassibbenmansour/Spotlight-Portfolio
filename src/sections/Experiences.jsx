@@ -3,7 +3,7 @@ import Experience from "../components/Experience.jsx";
 
 const Experiences = () => {
   return (
-    <section className="mt-15  md:mt-30">
+    <section className="mt-15  md:mt-30 max-w-[1240px] mx-auto">
       <div className="text-[48px] text-center font-bold">My <span className="text-purple">work experience</span></div>
       <div className="flex justify-center gap-6 md:gap-10 flex-wrap mt-14">
         {experienceDetails.map((experience) => {

@@ -3,7 +3,7 @@ import Project from "../components/Project.jsx";
 
 const Projects = () => {
   return (
-    <section className="mt-15 md:mt-30 text-center">
+    <section className="mt-15 md:mt-30 text-center max-w-[1240px] mx-auto">
     <div className="text-[48px] font-bold">A small selection of <span className="text-purple">recent projects</span></div>
     <div className="flex flex-wrap justify-center gap-8 mt-10">
       {projects.map((project) => (
