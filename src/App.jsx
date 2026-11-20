@@ -3,6 +3,7 @@ import Presentation from "./sections/Presentation";
 import Projects from "./sections/Projects";
 import Reviews from "./sections/Reviews";
 import Experiences from "./sections/Experiences";
+import Contact from "./components/Contact";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Projects />
       <Reviews />
       <Experiences />
+      <Contact />
     </div>
   )
 }
