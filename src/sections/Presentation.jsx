@@ -1,45 +1,113 @@
+import { useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GridCard06 from "../Img/GridCard06.png";
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* Each BentoCard animates independently when it enters the viewport */
+const BentoCard = ({ className, children }) => {
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const prefersReduced =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        cardRef.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: cardRef.current, // ← each card is its own trigger
+            start: "top 88%",
+            once: true,
+          },
+        }
+      );
+    }, cardRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleMouseMove = (e) => {
+    if (window.matchMedia("(hover: none)").matches) return;
+    const el = cardRef.current;
+    const { left, top, width, height } = el.getBoundingClientRect();
+    const x = (e.clientX - left) / width - 0.5;
+    const y = (e.clientY - top) / height - 0.5;
+    el.style.transform = `perspective(800px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-6px)`;
+  };
+
+  const handleMouseLeave = () => {
+    const el = cardRef.current;
+    el.style.transform = "";
+    el.style.transition = "transform 0.4s ease";
+  };
+
+  return (
+    <div
+      ref={cardRef}
+      className={`${className} transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(203,172,249,0.12)]`}
+      style={{ transition: "transform 0.15s ease, box-shadow 0.3s ease" }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {children}
+    </div>
+  );
+};
 
 const Presentation = () => {
   return (
     <section>
       <div className="mx-auto flex max-w-[1240px] overflow-hidden flex-col gap-4 md:gap-5 lg:gap-[30px] mt-14">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-[689fr_521fr] md:gap-5 lg:gap-[30px]">
-          <div className="relative bg-[url(./Img/GridCard01.png)] bg-no-repeat bg-cover bg-center flex min-h-[320px] items-end overflow-hidden rounded-[23px] border border-[#363749]/60 bg-gradient-to-br from-[#04071d] to-[#0c0e23] p-5 lg:p-7 md:min-h-0 md:aspect-[689/541]">
+          <BentoCard className="relative bg-[url(./Img/GridCard01.png)] bg-no-repeat bg-cover bg-center flex min-h-[320px] items-end overflow-hidden rounded-[23px] border border-[#363749]/60 bg-gradient-to-br from-[#04071d] to-[#0c0e23] p-5 lg:p-7 md:min-h-0 md:aspect-[689/541]">
             <h2 className="text-[32px] leading-[1.2] font-bold lg:text-4xl">
-              I prioritize client <br />collaboration, fostering <br/> open communication
+              I prioritize client <br />collaboration, fostering <br /> open communication
             </h2>
-          </div>
+          </BentoCard>
           <div className="grid grid-rows-[1fr_1fr] gap-4 md:gap-5 lg:gap-[30px]">
-            <div className="relative bg-[url(./Img/GridCard02.png)] bg-no-repeat bg-cover bg-center flex min-h-[180px] flex-col justify-start overflow-hidden rounded-[23px] border border-[#363749]/60 bg-gradient-to-br from-[#04071d] to-[#0c0e23] p-5 lg:p-7 md:min-h-0">
-              <h2 className="text-[32px] font-bold  lg:text-[32px]">
+            <BentoCard className="relative bg-[url(./Img/GridCard02.png)] bg-no-repeat bg-cover bg-center flex min-h-[180px] flex-col justify-start overflow-hidden rounded-[23px] border border-[#363749]/60 bg-gradient-to-br from-[#04071d] to-[#0c0e23] p-5 lg:p-7 md:min-h-0">
+              <h2 className="text-[32px] font-bold lg:text-[32px]">
                 I'm very flexible with time zone communications
               </h2>
-            </div>
-            <div className="relative bg-[url(./Img/GridCard03.png)] bg-no-repeat bg-contain bg-right flex min-h-[180px] flex-col justify-center overflow-hidden rounded-[23px] border border-[#363749]/60 bg-gradient-to-br from-[#04071d] to-[#0c0e23] p-5 lg:p-7 md:min-h-0">
+            </BentoCard>
+            <BentoCard className="relative bg-[url(./Img/GridCard03.png)] bg-no-repeat bg-contain bg-right flex min-h-[180px] flex-col justify-center overflow-hidden rounded-[23px] border border-[#363749]/60 bg-gradient-to-br from-[#04071d] to-[#0c0e23] p-5 lg:p-7 md:min-h-0">
               <p className="mb-1.5 text-base md:text-sm text-[#c1c2d3]">I constantly try to improve</p>
               <h2 className="text-3xl md:text-xl font-bold leading-tight lg:text-3xl">My tech stack</h2>
-            </div>
+            </BentoCard>
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-[351fr_859fr] md:gap-5 lg:gap-[30px]">
           <div className="grid grid-rows-[1fr_1fr] gap-4 md:gap-5 lg:gap-[30px]">
-            <div className="relative bg-[url(./Img/GridCard04.png)] bg-no-repeat bg-cover flex min-h-[180px] flex-col justify-start overflow-hidden rounded-[23px] border border-[#363749]/60 bg-gradient-to-br from-[#04071d] to-[#0c0e23] p-5 lg:p-7 md:min-h-0">
+            <BentoCard className="relative bg-[url(./Img/GridCard04.png)] bg-no-repeat bg-cover flex min-h-[180px] flex-col justify-start overflow-hidden rounded-[23px] border border-[#363749]/60 bg-gradient-to-br from-[#04071d] to-[#0c0e23] p-5 lg:p-7 md:min-h-0">
               <h2 className="text-3xl md:text-lg font-bold leading-tight lg:text-[26px]">
                 Tech enthusiast with a passion for development.
               </h2>
-            </div>
-            <div className="relative bg-[url(./Img/GridCard05.png)] bg-no-repeat bg-cover flex min-h-[180px] flex-col justify-center text-center items-center overflow-hidden rounded-[23px] border border-[#363749]/60 bg-gradient-to-br from-[#04071d] to-[#0c0e23] p-5 lg:p-7 md:min-h-0">
+            </BentoCard>
+            <BentoCard className="relative bg-[url(./Img/GridCard05.png)] bg-no-repeat bg-cover flex min-h-[180px] flex-col justify-center text-center items-center overflow-hidden rounded-[23px] border border-[#363749]/60 bg-gradient-to-br from-[#04071d] to-[#0c0e23] p-5 lg:p-7 md:min-h-0">
               <h2 className="text-3xl font-bold md:text-lg leading-tight lg:text-[30px]">
                 Do you want to start a project together?
               </h2>
-              <button type="button" className="flex items-center justify-center w-fit px-6 py-2 md:py-3 bg-gradient-to-r from-[#04071D] to-[#0C0E23] text-white text-base font-medium rounded-md border border-[#6971A2] hover:opacity-80 transition-opacity duration-300 mt-2 md:mt-4">
+              <button
+                type="button"
+                className="flex items-center justify-center w-fit px-6 py-2 md:py-3 bg-gradient-to-r from-[#04071D] to-[#0C0E23] text-white text-base font-medium rounded-md border border-[#6971A2] hover:opacity-80 transition-opacity duration-300 mt-2 md:mt-4"
+              >
                 Copy my email address
               </button>
-            </div>
+            </BentoCard>
           </div>
-          <div className="relative flex min-h-[320px] h-full flex-col justify-center overflow-hidden rounded-[23px] border border-[#363749]/60 bg-[#04071d] p-5 lg:p-7 md:min-h-0 md:aspect-[859/390]">
-            <img src={GridCard06} alt=""
+          <BentoCard className="relative flex min-h-[320px] h-full flex-col justify-center overflow-hidden rounded-[23px] border border-[#363749]/60 bg-[#04071d] p-5 lg:p-7 md:min-h-0 md:aspect-[859/390]">
+            <img
+              src={GridCard06}
+              alt=""
               className="pointer-events-none absolute right-0 top-0 h-full w-auto max-w-none translate-x-50 translate-y-0 md:translate-x-0 md:h-full md:object-contain"
             />
             <div className="relative z-10">
@@ -48,11 +116,11 @@ const Presentation = () => {
                 Currently building a JS Animation library
               </h2>
             </div>
-          </div>
+          </BentoCard>
         </div>
       </div>
     </section>
-  )
+  );
 };
 
 export default Presentation;
